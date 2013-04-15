@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/findyou1/!svn/ver/2/1/student
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/findyou1/!svn/ver/2/1/student/__init__.py
+END
+tests.py
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/findyou1/!svn/ver/2/1/student/tests.py
+END
+models.py
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/findyou1/!svn/ver/2/1/student/models.py
+END
+views.py
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/findyou1/!svn/ver/2/1/student/views.py
+END
