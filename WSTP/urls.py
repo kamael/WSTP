@@ -7,8 +7,9 @@ from test.views import *
 urlpatterns = patterns('',
     # Examples:
     url(r'^$',index),
-    url(r'^sql_injiection_intro/$',sql_injiection_intro),
-    url(r'^mysql/$',mysql),
+    url(r'^intro/([\w.-]+)/$',intro),
+    url(r'^content/([\w.-]+)/$',content_default),
+    url(r'^content/([\w.-]+)/([\w.-]+)/$',content),
     # url(r'^$', 'WSTP.views.home', name='home'),
     # url(r'^WSTP/', include('WSTP.foo.urls')),
 
