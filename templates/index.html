@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -39,24 +41,31 @@
 		<div id="sidebar">
 			<a href="#" class="visible-phone"><i class="icon icon-home"></i> Home</a>
 			<ul>
-				<li class="active"><a href="/"><i class="icon icon-home"></i> <span>Home</span></a></li>
-				<li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>CSRF</span> <span class="label">0</span></a></li>
+				<li class="active"><a href="/"><i class="icon icon-home"></i> <span>Home{{ contents.0.name }}</span></a></li>
+{% for Type in Types %}
 
 				<li class="submenu">
-					<a href="#"><i class="icon icon-th-list"></i> <span>SQL Injection</span> <span class="label">4</span></a>
+					<a href="#"><i class="icon icon-th-list"></i> <span>{{ Type.name  }}</span> <span class="label"> {{ numofs_Types.pop }}</span></a>
+                        
+
 					<ul>
-						<li><a href="/sql_injiection_intro">Introduction</a></li>
-						<li><a href="/mysql">MySQL</a></li>
-						<li><a href="#">Access</a></li>
-						<li><a href="#">MSSQL</a></li>
-						<li><a href="#">Oracle</a></li>
+						<li><a href="/intro/{{ Type.name }}">Introduction</a></li>
+                        {% for s_Type in s_Types %}
+                        {% if s_Type.father_id == Type.id %}
+
+					               <li><a href="/content/{{ s_Type.name }}">{{ s_Type.name }}</a></li>
+  
+                        {% endif %}
+                        {% endfor %}
+
 					</ul>
 				</li>
-				<li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Upload</span> <span class="label">0</span></a></li>
+{% endfor %}
+<!--				<li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>Upload</span> <span class="label">0</span></a></li>
 				<li class="submenu"><a href="#"><i class="icon icon-th-list"></i> <span>XSS</span> <span class="label">0</span></a></li>
 
 
-<!--				<li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
+				<li><a href="buttons.html"><i class="icon icon-tint"></i> <span>Buttons &amp; icons</span></a></li>
 				<li><a href="interface.html"><i class="icon icon-pencil"></i> <span>Interface elements</span></a></li>
 				<li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>
 				<li><a href="grid.html"><i class="icon icon-th-list"></i> <span>Grid Layout</span></a></li>
@@ -75,8 +84,8 @@
 				<li>
 					<a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a>
 				</li>
-			</ul>
--->		
+-->			</ul>
+		
 		</div>
 		
 		
@@ -142,3 +151,4 @@
             <script src="/static/js/unicorn.dashboard.js"></script>
 	</body>
 </html>
+
