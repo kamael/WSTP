@@ -8,8 +8,11 @@ urlpatterns = patterns('',
     # Examples:
     url(r'^$',index),
     url(r'^intro/([\w.-]+)/$',intro),
-    url(r'^content/([\w.-]+)/$',content_default),
+    url(r'^content/([\w.-]+)/$',content_default,name="content"),
     url(r'^content/([\w.-]+)/([\w.-]+)/$',content),
+    url(r'^register/$',register),
+    url(r'^login/$', login),
+    url(r'^logout/$', logout),
     # url(r'^$', 'WSTP.views.home', name='home'),
     # url(r'^WSTP/', include('WSTP.foo.urls')),
 

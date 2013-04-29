@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>WSTP</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/static/css/bootstrap-responsive.min.css" />
+        <link rel="stylesheet" href="/static/css/fullcalendar.css" />
+        <link rel="stylesheet" href="/static/css/uniform.css">  
+        <link rel="stylesheet" href="/static/css/chosen.css">
+        <link rel="stylesheet" href="/static/css/unicorn.main.css" />
+        <link rel="stylesheet" href="/static/css/unicorn.grey.css" class="skin-color" />
+        
+    </head>
+    <body>
+        
+        
+        <div id="header">
+            <h1><a href="./dashboard.html">WSTP</a></h1>        
+        </div>
+        
+        <div id="user-nav" class="navbar navbar-inverse">
+            <ul class="nav btn-group">
+                {% if  user and user != "AnonymousUser" %}
+                 <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">{{ user }}</span></a></li>
+                 <li class="btn btn-inverse"><a title="" href="{% url test.views.logout %}"><i class="icon icon-share-alt"></i> <span class="text">注销 </span></a></li>
+                {% else %}
+
+                <form id='login' action="{% url test.views.login %}" method='post' class=" form-inline pull-left ">{% csrf_token %}
+                <input id="id_username" maxlength="30" type="text" name="username"  class="input-small" placeholder="用户名">
+                <input id="id_password" maxlength="30" type="password"  class="input-small" name="password" placeholder="密码">
+                </form>
+                <li onclick="login.submit();"class="btn btn-inverse"><a><i class="icon icon-check"></i><span class="text"> 登录</span></a></li>
+                <li class="btn btn-inverse"><a title="" href="#SignUp" data-toggle="modal"><i class="icon icon-edit"></i><span class="text"> 注册 </span></a></li>
+                {% endif %}
+                
+            </ul>
+        </div>
+        <!-- Modal -->
+        <div id="SignUp" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">&nbsp;</h3>
+            </div>
+            <div class="modal-body">
+               <form class="form-horizontal" action="{% url test.views.register %}" method="post"  name="all_validate" id="all_validate" novalidate="novalidate"> {% csrf_token %}
+                    <div class="control-group">
+                        <label class="control-label">一卡通号</label>
+                        <div class="controls">
+                        <input type="text" name="username" id="username"  maxlength="30"  size="20" placeholder="一卡通号" >
+                        </div>
+                    </div>
+    
+                    <div class="control-group">
+                        <label class="control-label">密码</label>
+                        <div class="controls">
+                        <input id="password" maxlength="30" type="password" name="password" size="20" placeholder="密码">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">重复密码</label>
+                        <div class="controls">
+                        <input id="pwd2" maxlength="30" type="password" name="pwd2" size="20" placeholder="重复密码">
+                        </div>
+                    </div>
+                     <div class="control-group">
+                        <label class="control-label">E-mail</label>
+                        <div class="controls">
+                            <input type="text"  name="email" id="email" maxlength="30" size="30" placeholder="E-mail">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                    </br>
+                        <button type="submit" class="btn btn-success span3 offset2">注册</button>
+                    </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% block content %}{% endblock %}
+            <div id="footer" class="span9">
+                2013 &copy; WSTP. 
+            </div>
+        </div>
+    </div>
+    
+            <script src="/static/js/jquery.min.js"></script>
+            <script src="/static/js/jquery.ui.custom.js"></script>
+            <script src="/static/js/bootstrap.min.js"></script>
+            <script src="/static/js/jquery.uniform.js"></script>
+            <script src="/static/js/jquery.chosen.js"></script>
+            <script src="/static/js/jquery.validate.js"></script>
+            <script src="/static/js/unicorn.js"></script>
+            <script src="/static/js/unicorn.form_validation.js"></script>
+            <script src="/static/js/excanvas.min.js"></script>
+            <script src="/static/js/jquery.flot.min.js"></script>
+            <script src="/static/js/jquery.flot.resize.min.js"></script>
+            <script src="/static/js/jquery.peity.min.js"></script>
+            <script src="/static/js/fullcalendar.min.js"></script>
+            <script src="/static/js/unicorn.dashboard.js"></script>
+    </body>
+</html>
