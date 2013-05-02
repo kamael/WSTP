@@ -23,7 +23,10 @@
         <div id="user-nav" class="navbar navbar-inverse">
             <ul class="nav btn-group">
                 {% if  user and user != "AnonymousUser" %}
-                 <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">{{ user }}</span></a></li>
+
+                 <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">
+                {% if stu %}    {{ stu}}  {% else %} {{ user }} {% endif %}
+                </span></a></li>
                  <li class="btn btn-inverse"><a title="" href="{% url test.views.logout %}"><i class="icon icon-share-alt"></i> <span class="text">注销 </span></a></li>
                 {% else %}
 

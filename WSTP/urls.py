@@ -13,6 +13,8 @@ urlpatterns = patterns('',
     url(r'^register/$',register),
     url(r'^login/$', login),
     url(r'^logout/$', logout),
+    url(r'^check/username/$',check_username),
+    url(r'^check/email/$',check_email)
     # url(r'^$', 'WSTP.views.home', name='home'),
     # url(r'^WSTP/', include('WSTP.foo.urls')),
 

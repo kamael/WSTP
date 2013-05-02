@@ -21,3 +21,10 @@ class Content(models.Model):
      source = models.TextField()
      help = models.TextField()
      link = models.TextField()
+
+class Students(models.Model):
+    stu_name = models.CharField(max_length = 20)
+    stu_college = models.CharField(max_length = 60)
+    stu_major = models.CharField(max_length = 60)
+    student_id = models.CharField(max_length =30)
+    card = models.CharField(max_length =  30)
