@@ -10,6 +10,32 @@ from django.contrib.auth import authenticate, login as auth_login ,logout as aut
 from django.utils.translation import ugettext_lazy as _
 from forms import RegisterForm,LoginForm,AjaxForm
 from django.utils import simplejson
+import datetime
+
+def online_time(user):
+    onlinetime = 0
+    onlinedays = 0 
+    onlinehours = 0
+    onlineminutes = 0
+    try:
+        onlinedays = int(datetime.datetime.now().strftime("%d")) - int(user[0].date_joined.strftime("%d"))
+        onlinehours = int(datetime.datetime.now().strftime("%H")) - int(user[0].date_joined.strftime("%H"))-8
+        onlineminutes = int(datetime.datetime.now().strftime("%M")) - int(user[0].date_joined.strftime("%M"))
+        onlinetime = [onlinedays,onlinehours,onlineminutes]
+    except:
+        onlinetime = [0,0,0]
+    return onlinetime 
+
+def add_grades(username,grade=0): #request.user()
+    grades = User.objects.get(username = username)
+    grades.grades += grade
+    grades.save()
+
+def check_answer(question,answer,username):
+    try Content.objects.filter
+
+
+
 
 def index(request):
     Type = TYPE.objects.all()
@@ -23,9 +49,10 @@ def index(request):
     ns_Type.reverse()
     stu = ''
     if request.user.is_authenticated():     #判断用户是否已登录
-        user = request.user          #获取已登录的用户
         try:
-            stu = Students.objects.filter( card = user)[0].stu_name
+            user = User.objects.filter(username = request.user)
+            stu = Students.objects.filter( card = user[0].username)[0].stu_name
+
         except:
             stu = ''
     else:   
@@ -37,7 +64,8 @@ def index(request):
         'numofs_Types':ns_Type,
         'contents':content,
         'user':user,
-        'stu':stu
+        'stu':stu,
+        'time':online_time(User.objects.filter(username = request.user))
 
         },context_instance=RequestContext(request))
 
@@ -70,7 +98,9 @@ def intro(request,offset):
         'Typeneeds':Typeneed,
         'contents':content,
         'user':user,
-        'stu':stu
+        'stu':stu,
+        'time':online_time(User.objects.filter(username = request.user))
+
         },context_instance=RequestContext(request))
 
 def content_default(request,offset):
@@ -91,7 +121,8 @@ def content_default(request,offset):
         's_Types':s_Type,
         'contents':content,
         'user':user,
-        'stu':stu
+        'stu':stu,
+        'time':online_time(User.objects.filter(username = request.user))
         },context_instance=RequestContext(request))
 
 def content(request,offset1,offset2):
@@ -114,7 +145,8 @@ def content(request,offset1,offset2):
         'contents':content,
         'contentneeds':contentneed,
         'user':user,
-        'stu':stu
+        'stu':stu,
+        'time':online_time(User.objects.filter(username = request.user))
         },context_instance=RequestContext(request))
 
 

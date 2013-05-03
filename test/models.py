@@ -1,5 +1,8 @@
 # -*- coding:utf-8 *-*
 from django.db import models
+from django.contrib.auth.models import User  
+from django.contrib.auth.admin import UserAdmin  
+import datetime  
 
 class TYPE(models.Model):
     id = models.AutoField(primary_key = True)
@@ -21,6 +24,8 @@ class Content(models.Model):
      source = models.TextField()
      help = models.TextField()
      link = models.TextField()
+     answer = TextField()
+     grades = IntegerField()
 
 class Students(models.Model):
     stu_name = models.CharField(max_length = 20)
@@ -28,3 +33,30 @@ class Students(models.Model):
     stu_major = models.CharField(max_length = 60)
     student_id = models.CharField(max_length =30)
     card = models.CharField(max_length =  30)
+
+
+
+
+
+
+
+class ProfileBase(type):  
+    def __new__(cls, name, bases, attrs):  
+        module = attrs.pop('__module__')  
+        parents = [b for b in bases if isinstance(b, ProfileBase)]  
+        if parents:  
+            fields = []  
+            for obj_name, obj in attrs.items():  
+                if isinstance(obj, models.Field): fields.append(obj_name)  
+                User.add_to_class(obj_name, obj)  
+            UserAdmin.fieldsets = list(UserAdmin.fieldsets)  
+            UserAdmin.fieldsets.append((name, {'fields': fields}))  
+        return super(ProfileBase, cls).__new__(cls, name, bases, attrs)  
+          
+class Profile(object):  
+    __metaclass__ = ProfileBase  
+  
+class MyProfile(Profile):  
+    grades = models.IntegerField(null = True,blank = True)   
+    answer = models.TextField()
+    question = models.TextField()

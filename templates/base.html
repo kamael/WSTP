@@ -25,7 +25,7 @@
                 {% if  user and user != "AnonymousUser" %}
 
                  <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">
-                {% if stu %}    {{ stu}}  {% else %} {{ user }} {% endif %}
+                {% if stu %}    {{ stu }}  {{user.0.grades}} {{ time.0  }} {{ time.1  }}:{{ time.2  }}{% else %} {{ user.0.username }} {% endif %}
                 </span></a></li>
                  <li class="btn btn-inverse"><a title="" href="{% url test.views.logout %}"><i class="icon icon-share-alt"></i> <span class="text">注销 </span></a></li>
                 {% else %}
