@@ -20,12 +20,12 @@ class s_type(models.Model):
 class Content(models.Model):
      id = models.AutoField(primary_key = True)
      name = models.CharField(max_length = 50)
-     father = models.ForeignKey(s_type)
+     father = models.ForeignKey(TYPE)
      source = models.TextField()
      help = models.TextField()
      link = models.TextField()
-     answer = TextField()
-     grades = IntegerField()
+     answer = models.TextField()
+     grade = models.IntegerField()
 
 class Students(models.Model):
     stu_name = models.CharField(max_length = 20)
@@ -58,5 +58,5 @@ class Profile(object):
   
 class MyProfile(Profile):  
     grades = models.IntegerField(null = True,blank = True)   
-    answer = models.TextField()
-    question = models.TextField()
+    answers = models.TextField()
+    questions = models.TextField()

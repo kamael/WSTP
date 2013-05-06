@@ -7,10 +7,10 @@
                 <li><a href="/"><i class="icon icon-home"></i> <span>Home</span></a></li>
 
         {% for content in contents %}
-                {% if content.name == contents.0.name %}
-                <li class="active"><a href="/content/{{ s_Types.0.name }}/{{ content.name }}"><i class="icon icon-tint"></i> <span>{{ content.name }}</span></a></li>
+                {% if content.name == contents.name %}
+                <li class="active"><a href="/content/{{ s_Types.name }}/{{ content.name }}"><i class="icon icon-tint"></i> <span>{{ content.name }}</span></a></li>
                 {% else %}
-                <li><a href="/content/{{ s_Types.0.name }}/{{ content.name }}"><i class="icon icon-tint"></i> <span>{{ content.name }}</span></a></li>
+                <li><a href="/content/{{ s_Types.name }}/{{ content.name }}"><i class="icon icon-tint"></i> <span>{{ content.name }}</span></a></li>
                 {% endif %}
         {% endfor %}
             </ul>
@@ -19,19 +19,19 @@
         
         <div id="content">
             <div id="content-header">
-                <h1>{{ s_Types.0.name }}</h1>
+                <h1>{{ s_Types.name }}</h1>
             </div>
             <div id="breadcrumb">
                 <a href="/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> WSTP</a>
-                <a href="/intro/{{ Types.0.name }}" class="tip-bottom">{{ Types.0.name }}</a>
-                <a href="#" class="current">{{ s_Types.0.name }}</a>
+                <a href="/intro/{{ Types.name }}" class="tip-bottom">{{ Types.name }}</a>
+                <a href="#" class="current">{{ s_Types.name }}</a>
             </div>
 
             <div class="container-fluid">
                 <div class="row-fluid">
                     <div class="span12">
-                        {% if  contents.0.link %}
-                         <iframe src="/{{ contents.0.link }}" width="100%" height="1000" seamless>> </iframe> 
+                        {% if  contents.link %}
+                         <iframe src="/{{ contents.link }}" width="100%" height="1000" seamless>> </iframe> 
                         {% endif %}
 
 

@@ -4,20 +4,17 @@
         <div id="sidebar">
             <a href="#" class="visible-phone"><i class="icon icon-home"></i> Home</a>
             <ul>
-                <li class="active"><a href="/"><i class="icon icon-home"></i> <span>Home{{ contents.0.name }}</span></a></li>
+                <li><a href="/"><i class="icon icon-home"></i> <span>Home</span></a></li>
 {% for Type in Types %}
 
                 <li class="submenu">
-                    <a href="#"><i class="icon icon-th-list"></i> <span>{{ Type.name  }}</span> <span class="label"> {{ numofs_Types.pop }}</span></a>
+                    <a href="#"><i class="icon icon-th-list"></i> <span>{{ Type.name  }}</span> <span class="label"> {{ numofcontents.pop }}</span></a>
                         
 
                     <ul>
-                        <li><a href="/intro/{{ Type.name }}">Introduction</a></li>
-                        {% for s_Type in s_Types %}
-                        {% if s_Type.father_id == Type.id %}
-
-                                   <li><a href="/content/{{ s_Type.name }}">{{ s_Type.name }}</a></li>
-  
+                        {% for content in contents %}
+                        {% if content.father_id == Type.id %}
+                        <li><a href="/content/{{ content.id }}">{{ content.name }}</a></li>
                         {% endif %}
                         {% endfor %}
 
