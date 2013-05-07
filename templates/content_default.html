@@ -1,42 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-            
-        <div id="sidebar">
-            <a href="#" class="visible-phone"><i class="icon icon-home"></i> Home</a>
-            <ul>
-                <li><a href="/"><i class="icon icon-home"></i> <span>Home</span></a></li>
 
-        {% for content in contents %}
-                {% if content.name == contents.name %}
-                <li class="active"><a href="/content/{{ s_Types.name }}/{{ content.name }}"><i class="icon icon-tint"></i> <span>{{ content.name }}</span></a></li>
-                {% else %}
-                <li><a href="/content/{{ s_Types.name }}/{{ content.name }}"><i class="icon icon-tint"></i> <span>{{ content.name }}</span></a></li>
-                {% endif %}
-        {% endfor %}
-            </ul>
-        </div>
-        
-        
-        <div id="content">
-            <div id="content-header">
-                <h1>{{ s_Types.name }}</h1>
-            </div>
-            <div id="breadcrumb">
-                <a href="/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> WSTP</a>
-                <a href="/intro/{{ Types.name }}" class="tip-bottom">{{ Types.name }}</a>
-                <a href="#" class="current">{{ s_Types.name }}</a>
-            </div>
+<div id="sidebar">
+	<a href="#" class="visible-phone"><i class="icon icon-home"></i> Home</a>
+	<ul>
+		<li><a href="/"><i class="icon icon-home"></i> <span>Home</span></a></li>
+		{% for content in contents %}
+		{% if content.name == contents.name %}
+		<li class="active"><a href="/content/{{ s_Types.name }}/{{ content.name }}"><i class="icon icon-tint"></i> <span>{{ content.name }}</span></a></li>
+		{% else %}
+		<li><a href="/content/{{ s_Types.name }}/{{ content.name }}"><i class="icon icon-tint"></i> <span>{{ content.name }}</span></a></li>
+		{% endif %}
+		{% endfor %}
+	</ul>
+</div>
 
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <div class="span12">
-                        {% if  contents.link %}
-                         <iframe src="/{{ contents.link }}" width="100%" height="1000" seamless>> </iframe> 
-                        {% endif %}
+<div id="content">
+	<div id="content-header">
+		<h1>{{ s_Types.name }}</h1>
+	</div>
+	<div id="breadcrumb">
+		<a href="/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> WSTP</a>
+		<a href="/intro/{{ Types.name }}" class="tip-bottom">{{ Types.name }}</a>
+		<a href="#" class="current">{{ s_Types.name }}</a>
+	</div>
 
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				{% if  contents.link %}
+				<iframe src="/{{ contents.link }}" width="100%" height="1000" seamless>> </iframe>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 
-                    </div>
-                </div>
-            </div>
-
-{% endblock %}
+	{% endblock %}
