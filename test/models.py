@@ -60,3 +60,4 @@ class MyProfile(Profile):
     grades = models.IntegerField(null=True, blank=True)
     answers = models.TextField()
     questions = models.TextField()
+    commit_time = models.DateTimeField()

@@ -39,6 +39,7 @@ def add_grades(username, q):  # request.user()
     user.grades = int(user.grades) + int(q.grade)
     user.questions = str(user.questions) + str(q.id) + ';'
     user.answers = str(user.answers)+str(q.answer)+';'
+    user.commit_time = datetime.datetime.now()
     user.save()
 
 def update_name(username,name):
@@ -48,7 +49,7 @@ def update_name(username,name):
 
 def myrank(username):
     count = 1
-    user = User.objects.order_by('-grades','date_joined')
+    user = User.objects.order_by('-grades','commit_time')
     for i in user:
         if username == i.username:
             break
@@ -72,7 +73,7 @@ def index(request):
     Type = TYPE.objects.all()
     content = Content.objects.all()
     ncontent = []
-    userrank = User.objects.order_by('-grades','date_joined')[:10]
+    userrank = User.objects.order_by('-grades','commit_time')[:10]
     for i in Type:
         ncontent.append(0)
         for j in content:
@@ -153,7 +154,10 @@ def register(request):
             user = User.objects.create_user(username, email, password)
             user.grades = 0
             user.save()
-            update_name(username,Students.objects.get(card=username).stu_name)
+            try:
+                update_name(username,Students.objects.get(card=username).stu_name)
+            except:
+                pass
             _login(request, username, password)  # 注册完毕 直接登陆
     return HttpResponseRedirect('/')
 
