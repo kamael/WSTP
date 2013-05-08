@@ -6,7 +6,6 @@ from test.views import *
 
 urlpatterns = patterns('',
                        url(r'^$', index),
-                       url(r'^intro/([\w-]+)/$', intro),
                        url(r'^content/([\w-]+)/$', content),
                        url(r'^register/$', register),
                        url(r'^login/$', login),

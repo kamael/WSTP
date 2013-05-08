@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>WSTP</title>
+	<title>东南大学网络安全技能竞赛</title>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" href="/static/css/bootstrap.min.css" />
@@ -15,7 +15,7 @@
 <body>
 
 	<div id="header">
-		<h1><a href="./dashboard.html">WSTP</a></h1>
+		<h1><a href="./dashboard.html">网络安全技能竞赛</a></h1>
 	</div>
 
 	<div id="user-nav" class="navbar navbar-inverse">
@@ -23,7 +23,7 @@
 			{% if  user %}
 
 			<li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span class="text">
-				{% if stu %}    {{ stu }}  {{user.grades}} {{ time.0  }} {{ time.1  }}:{{ time.2  }}{% else %} {{ user.username }} {% endif %}
+				{% if user.first_name %}    {{ user.first_name }}  {% else %} {{ user.username }}{% endif %}
 			</span></a></li>
 			<li class="btn btn-inverse"><a title="" href="{% url test.views.logout %}"><i class="icon icon-share-alt"></i> <span class="text">注销 </span></a></li>
 			{% else %}
@@ -71,17 +71,17 @@
 						<input type="text"  name="email" id="email" maxlength="30" size="30" placeholder="E-mail">
 					</div>
 				</div>
-				<div class="control-group">
+				<div class="control-group ">
 					<br />
-					<button type="submit" class="btn btn-success span5">注册</button>
+					<button type="submit" class="btn btn-success row-fluid">注册</button>
 				</div>
 			</div>
 		</form>
 	</div>
-</div>
+
 {% block content %}{% endblock %}
-<div id="footer" class="span9">
-	2013 &copy; WSTP.
+<div id="footer" class="container ">
+	Copyleft 2013 &copy; 东南大学网络安全联盟
 </div>
 
 <script src="/static/js/jquery.min.js"></script>
@@ -92,11 +92,5 @@
 <script src="/static/js/jquery.validate.js"></script>
 <script src="/static/js/unicorn.js"></script>
 <script src="/static/js/unicorn.form_validation.js"></script>
-<script src="/static/js/excanvas.min.js"></script>
-<script src="/static/js/jquery.flot.min.js"></script>
-<script src="/static/js/jquery.flot.resize.min.js"></script>
-<script src="/static/js/jquery.peity.min.js"></script>
-<script src="/static/js/fullcalendar.min.js"></script>
-<script src="/static/js/unicorn.dashboard.js"></script>
 </body>
 </html>

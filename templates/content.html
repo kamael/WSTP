@@ -34,7 +34,7 @@
 			<h1>{{ contentneeds.name }}</h1>
 		</div>
 		<div id="breadcrumb">
-			<a href="/" title="" class="tip-bottom"><i class="icon-home"></i> WSTP</a>
+			<a href="/" title="" class="tip-bottom"><i class="icon-home"></i> 网络安全技能竞赛</a>
 			<a href="/intro/{{ Types.0.name }}" class="tip-bottom">{{ Typeneed.name }}</a>
 			<a href="#" class="current">{{ contentneeds.name }}</a>
 		</div>
@@ -47,7 +47,7 @@
 				<div class="span5">
 					<div class="control-group">
 						<div class="controls">
-							<div class="alert alert-success">
+							<div class="alert alert-success ">
 								<strong>Cheers! Challenge passed!</strong>
 							</div>
 						</div>
@@ -55,12 +55,12 @@
 				</div>
 				{% else %}
 				<br />
-				<div class="span10">
-					<form class="form-inline" action="/content/{{ contentneeds.id }}/commit" method="post" > {% csrf_token %}
+				<div class="span10 ">
+					<form class="form-search" action="/content/{{ contentneeds.id }}/commit" method="post" > {% csrf_token %}
 						<div class="control-group">
 							<div class="controls">
-								<input type="text"  name="password" id="password"  placeholder="Password">
-								<button type="submit" class="btn btn-success">Submit</button>
+								<input type="text" name="password" id="password"  placeholder="Password">
+								<button type="submit" class="btn btn-success ">Submit</button>
 							</div>
 						</div>
 					</form>

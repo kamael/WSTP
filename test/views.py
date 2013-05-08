@@ -17,12 +17,15 @@ def online_time(user):
     onlinehours = 0
     onlineminutes = 0
     try:
-        onlinedays = int(datetime.datetime.now().strftime("%d")) - int(user[0].date_joined.strftime("%d"))
-        onlinehours = int(datetime.datetime.now().strftime("%H")) - int(user[0].date_joined.strftime("%H"))-8
-        onlineminutes = int(datetime.datetime.now().strftime("%M")) - int(user[0].date_joined.strftime("%M"))
+        onlinedays = int(datetime.datetime.now().strftime("%d")) - int(user.date_joined.strftime("%d"))
+        onlinehours = int(datetime.datetime.now().strftime("%H")) - int(user.date_joined.strftime("%H"))-8
+        onlineminutes = int(datetime.datetime.now().strftime("%M")) - int(user.date_joined.strftime("%M"))
         if onlineminutes < 0:
             onlineminutes += 60
             onlinehours -= 1
+        if onlinehours < 0:
+            onlinehours +=24
+            onlinedays -=1
         onlinetime = [onlinedays, onlinehours, onlineminutes]
     except:
         onlinetime = [0, 0, 0]
@@ -38,12 +41,27 @@ def add_grades(username, q):  # request.user()
     user.answers = str(user.answers)+str(q.answer)+';'
     user.save()
 
+def update_name(username,name):
+    user = User.objects.get(username = username)
+    user.first_name = name
+    user.save()
+
+def myrank(username):
+    count = 1
+    user = User.objects.order_by('-grades','date_joined')
+    for i in user:
+        if username == i.username:
+            break
+        else:
+            count += 1
+    return count
+
 
 def check_answer(request, offset):
     if request.user.is_authenticated():  # 判断用户是否已登录
         try:
             q = Content.objects.get(id=offset)
-            if q.answer == request.POST['password']:
+            if q.answer == request.POST['password'] and offset not in User.objects.get(username=request.user).questions.split(';'):
                 add_grades(request.user, q)
         except:
             pass
@@ -54,21 +72,20 @@ def index(request):
     Type = TYPE.objects.all()
     content = Content.objects.all()
     ncontent = []
+    userrank = User.objects.order_by('-grades','date_joined')[:10]
     for i in Type:
         ncontent.append(0)
         for j in content:
             if i.id == j.father_id:
                 ncontent[j.father_id-1] += 1
     ncontent.reverse()
-    stu = ''
     time = [0, 0, 0]
+    rank = ' - '
+
     if request.user.is_authenticated():  # 判断用户是否已登录
-        try:
             user = User.objects.get(username=request.user)
-            stu = Students.objects.get(card=user.username).stu_name
             time = online_time(User.objects.get(username=request.user))
-        except:
-            stu = ''
+            rank = myrank(user.username)
     else:
         user = ''
 
@@ -77,67 +94,9 @@ def index(request):
                               'contents': content,
                               'numofcontents': ncontent,
                               'user': user,
-                              'stu': stu,
-                              'time': time},
-                              context_instance=RequestContext(request))
-
-
-def intro(request, offset):
-    Type = TYPE.objects.all()
-    Typeneed = TYPE.objects.get(name=offset)
-    s_Type = s_type.objects.all()
-    content = Content.objects.all()
-    ns_Type = []
-    for i in Type:
-        ns_Type.append(0)
-        for j in s_Type:
-            if i.id == j.father_id:
-                ns_Type[j.father_id-1] += 1
-
-    ns_Type.reverse()
-    stu = ''
-    time = [0, 0, 0]
-    if request.user.is_authenticated():  # 判断用户是否已登录
-        user = request.user  # 获取已登录的用户
-        time = online_time(User.objects.get(username=request.user))
-        try:
-            stu = Students.objects.get(card=user).stu_name
-        except:
-            stu = ''
-    else:
-        user = ''
-    return render_to_response('intro.html',
-                              {'Types': Type,
-                              's_Types': s_Type,
-                              'numofs_Types': ns_Type,
-                              'Typeneeds': Typeneed,
-                              'contents': content,
-                              'user': user,
-                              'stu': stu,
-                              'time': time},
-                              context_instance=RequestContext(request))
-
-
-def content_default(request, offset):
-    s_Type = s_type.objects.get(name=offset)
-    Type = TYPE.objects.get(id=s_Type.father_id)
-    content = Content.objects.get(father_id=s_Type.id)
-    stu = ''
-    if request.user.is_authenticated():  # 判断用户是否已登录
-        user = request.user  # 获取已登录的用户
-        try:
-            stu = Students.objects.get(card=user).stu_name
-        except:
-            stu = ''
-    else:
-        user = ''
-    return render_to_response('content_default.html',
-                              {'Types': Type,
-                              's_Types': s_Type,
-                              'contents': content,
-                              'user': user,
-                              'stu': stu,
-                              'time': online_time(User.objects.get(username=request.user))},
+                              'time': time,
+                              'userrank':userrank,
+                              'rank':rank},
                               context_instance=RequestContext(request))
 
 
@@ -153,23 +112,18 @@ def content(request, offset):
             if i.id == j.father_id:
                 ncontent[j.father_id-1] += 1
     ncontent.reverse()
-    stu = ''
     time = [0, 0, 0]
     if request.user.is_authenticated():  # 判断用户是否已登录
+        user = User.objects.get(username=request.user)
+        time = online_time(User.objects.get(username=request.user))
         try:
-            user = User.objects.get(username=request.user)
-            stu = Students.objects.get(card=user.username).stu_name
-            time = online_time(User.objects.get(username=request.user))
-            try:
-                q = user.questions.split(';')
-                questions = []
-                for i in q:
-                    if i:
-                        questions.append(int(i))
-            except:
-                questions = []
+            q = user.questions.split(';')
+            questions = []
+            for i in q:
+                if i:
+                    questions.append(int(i))
         except:
-            stu = ''
+            questions = []
     else:
         user = ''
         questions = []
@@ -181,7 +135,6 @@ def content(request, offset):
                               'numofcontents': ncontent,
                               'contentneeds': contentneed,
                               'user': user,
-                              'stu': stu,
                               'questions': questions,
                               'time': time},
                               context_instance=RequestContext(request))
@@ -198,7 +151,9 @@ def register(request):
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
             user = User.objects.create_user(username, email, password)
+            user.grades = 0
             user.save()
+            update_name(username,Students.objects.get(card=username).stu_name)
             _login(request, username, password)  # 注册完毕 直接登陆
     return HttpResponseRedirect('/')
 
