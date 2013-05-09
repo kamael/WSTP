@@ -33,70 +33,87 @@
 	<div class="container-fluid">
 		<div class="row-fluid">
 			{% if  user %}
-            			<div class="widget-box ">
-                            		<div class="widget-title"><span class="icon"><i class="icon-list"></i></span><h5>Dashboard</h5>
-                            			<div class="buttons"><a href="/" class="btn btn-mini"><i class="icon-refresh"></i> Update stats</a>
-                            			</div>
-                            		</div>
-                        			<div class="widget-content ">
-                           				 <div class="row-fluid ">
-                        					<ul class="site-stats span5">
-            						<li><i class="icon-user"></i> <strong>{{ user.username }} </strong>{% if user.first_name %}   <small>{{ user.first_name }}</small></li>{% endif %}
-            						<li><i class="icon-time"></i> <strong>{{ time.0 }} Day{{ time.0|pluralize   }}</strong> <small>{{ time.1  }} :  {{ time.2  }}</small></li>
-            						<li class="divider"></li>
-            						<li><i class="icon-ok-circle"></i> <strong>{{user.grades}}</strong> <small> Total Score</small></li>
-            						<li> <i class="icon-thumbs-up"></i>  <strong>{{ rank }}</strong><small> Rank</small></li>
-                        					</ul>
-                        					<div class="span7">
+			<div class="widget-box ">
+				<div class="widget-title"><span class="icon"><i class="icon-list"></i></span><h5>Dashboard</h5>
+					<div class="buttons"><a href="/" class="btn btn-mini"><i class="icon-refresh"></i> Update stats</a>
+					</div>
+				</div>
+				<div class="widget-content ">
+					<div class="row-fluid ">
+						<ul class="site-stats span5">
+							<li><i class="icon-user"></i> <strong>{{ user.username }} </strong>{% if user.first_name %}   <small>{{ user.first_name }}</small></li>{% endif %}
+							<li><i class="icon-time"></i> <strong>{{ time.0 }} Day{{ time.0|pluralize }}</strong> <small>{{ time.1 }} :  {{ time.2 }}</small></li>
+							<li class="divider"></li>
+							<li><i class="icon-ok-circle"></i> <strong>{{user.grades}}</strong> <small> Total Score</small></li>
+							<li> <i class="icon-thumbs-up"></i>  <strong>{{ rank }}</strong><small> Rank</small></li>
+						</ul>
+						<div class="span7">
 							<table class="table table-bordered table-striped">
-	                        						<tbody>
-	                        							{% for i in userrank %}
-	                        							{% if i.username != 'iris' and i.grades > 0%}
-				                        				<tr>
-				                                        			<td>{% if i.first_name %}<strong>{{ i.first_name }} </strong>&nbsp;&nbsp;<small>{{ i.username }}</small> {% else %}<strong>  {{ i.username }}</strong> {% endif %}</td>
-				                                       			<td>{{ i.grades }} <small>Total Score</small></td>
-				                    				</tr>
-				                    				{% endif %}
-				                    				{% endfor %}
+								<tbody>
+									{% for i in userrank %}
+									{% if i.username != 'iris' and i.grades > 0%}
+									<tr>
+										<td>{% if i.first_name %}<strong>{{ i.first_name }} </strong>&nbsp;&nbsp;<small>{{ i.username }}</small> {% else %}<strong>  {{ i.username }}</strong> {% endif %}</td>
+										<td>{{ i.grades }} <small>Total Score</small></td>
+									</tr>
+									{% endif %}
+									{% endfor %}
 								</tbody>
-		                        				</table>
-		                        			</div> 
-                           				 </div>    
+							</table>
+						</div>
+					</div>
 
-                        			</div>
-    
-                        		</div>
-           			{% endif %}
+				</div>
 
-			        
-                                          <div class="span1">
-                                          </div>
+			</div>
+			{% endif %}
+
+
+			<div class="span1">
+			</div>
 			<div class="span8">
 				<h1>Welcome to SUS2013!</h1>
-                                                        <br />
-                                                        <br />
-				<h4>竞赛时间:</h4>  
-                                                        <strong> 2013.5.10 - 2013.5.17</strong></p>
+				<br />
+				<br />
+				<h4>竞赛时间:</h4>
+				<strong> 2013.5.10 - 2013.5.17</strong></p>
 				<br />
 				<h4>参与方式:</h4>
 				<p>注册后即可做题。我们都欢迎你的到来！为了方便我们与你的联系，请务必填写您的联系方式。</p>
-                                                        <p>为了提高竞赛的乐趣，竞赛结束之前请不要公布题目答案，谢谢合作。</p>
-                                                        <p>请大家多多利用Google & Baidu.</p>
-                                                        <p>所有题目并没有一次性上线，请大家经常关注我们~祝大家玩的愉快，学的开心。</p>
+				<p>为了提高竞赛的乐趣，竞赛结束之前请不要公布题目答案，谢谢合作。</p>
+				<p>请大家多多利用Google & Baidu.</p>
+				<p>所有题目并没有一次性上线，请大家经常关注我们~祝大家玩的愉快，学的开心。</p>
 				<br />
 				<h4>竞赛规则:</h4>
 				<p>竞赛评奖采用积分制，按分数的多少进行排序。</p>
-                                                        <p>竞赛评分以选手攻关数目多少和系统记录的过关时间先后为依据，选手的最终成绩为通过各关所获分数的累积。
-                                                        <p>选手按分数多少排序，两名选手得分相同时，则根据各自通过最后一关的时间，先通过者优于后通过者。</p>
-                                                        <p>最后按照名次先后进行评奖，一等奖一名，二等奖三名，三等奖六名。</p>
-                                                        <p>竞赛旨在普及信息安全知识，引导初学者进行学习，并为技术爱好者们提供一个交流的平台。</p>
-                                                        <p>恶意攻击竞赛服务器的参赛者将失去比赛资格。</p>
+				<p>竞赛评分以选手攻关数目多少和系统记录的过关时间先后为依据，选手的最终成绩为通过各关所获分数的累积。</p>
+				<p>选手按分数多少排序，两名选手得分相同时，则根据各自通过最后一关的时间，先通过者优于后通过者。</p>
+				<p>最后按照名次先后进行评奖，一等奖一名，二等奖三名，三等奖六名。</p>
+				<p>竞赛旨在普及信息安全知识，引导初学者进行学习，并为技术爱好者们提供一个交流的平台。</p>
+				<p>恶意攻击竞赛服务器的参赛者将失去比赛资格。</p>
+				<br />
+				<h4>竞赛奖品</h4>
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<td>一等奖</td>
+							<td>无线路由器</td>
+						</tr>
+						<tr>
+							<td>二等奖</td>
+							<td>无线鼠标</td>
+						</tr>
+						<tr>
+							<td>三等奖</td>
+							<td>散热器</td>
+						</tr>
+					</tbody>
+				</table>
 				<br />
 				<h5><a href="mailto:foreversus@gmail.com">Email Me</a> </h5>
 				<br />
 			</div>
-		</div> 
+		</div>
 	</div>
 </div>
-
-	{% endblock %}
+{% endblock %}

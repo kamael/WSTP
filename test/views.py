@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from models import TYPE, s_type, Content, Students
+from models import TYPE, Content, Students
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -24,8 +24,8 @@ def online_time(user):
             onlineminutes += 60
             onlinehours -= 1
         if onlinehours < 0:
-            onlinehours +=24
-            onlinedays -=1
+            onlinehours += 24
+            onlinedays -= 1
         onlinetime = [onlinedays, onlinehours, onlineminutes]
     except:
         onlinetime = [0, 0, 0]
@@ -42,14 +42,16 @@ def add_grades(username, q):  # request.user()
     user.commit_time = datetime.datetime.now()
     user.save()
 
-def update_name(username,name):
-    user = User.objects.get(username = username)
+
+def update_name(username, name):
+    user = User.objects.get(username=username)
     user.first_name = name
     user.save()
 
+
 def myrank(username):
     count = 1
-    user = User.objects.order_by('-grades','commit_time')
+    user = User.objects.order_by('-grades', 'commit_time')
     for i in user:
         if username == i.username:
             break
@@ -73,7 +75,7 @@ def index(request):
     Type = TYPE.objects.all()
     content = Content.objects.all()
     ncontent = []
-    userrank = User.objects.order_by('-grades','commit_time')[:10]
+    userrank = User.objects.order_by('-grades', 'commit_time')[:10]
     for i in Type:
         ncontent.append(0)
         for j in content:
@@ -96,8 +98,8 @@ def index(request):
                               'numofcontents': ncontent,
                               'user': user,
                               'time': time,
-                              'userrank':userrank,
-                              'rank':rank},
+                              'userrank': userrank,
+                              'rank': rank},
                               context_instance=RequestContext(request))
 
 
@@ -149,14 +151,13 @@ def register(request):
         form = RegisterForm(request.POST.copy())
         if form.is_valid():
             username = form.cleaned_data["username"]
-            tel = form.cleaned_data["tel"]
             password = form.cleaned_data["password"]
-            user = User.objects.create_user(username,'',password)
+            user = User.objects.create_user(username, '', password)
             user.tel = request.POST['tel']
             user.grades = 0
             user.save()
             try:
-                update_name(username,Students.objects.get(card=username).stu_name)
+                update_name(username, Students.objects.get(card=username).stu_name)
             except:
                 pass
             _login(request, username, password)  # 注册完毕 直接登陆
@@ -210,7 +211,7 @@ def check_tel(request):
     response_str = "false"
     if request.method == 'GET':
         try:
-            user = User.objects.get(tel = request.GET['tel'])
+            user = User.objects.get(tel=request.GET['tel'])
             if user is not None:
                 response_str = "false"
         except:
