@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class RegisterForm(forms.Form):
-    email = forms.EmailField(label=_(u"E-mail"),
+    tel= forms.CharField(label=_(u"手机号码"),
                              max_length=30,
                              widget=forms.TextInput(attrs={'size': 30}))
     username = forms.CharField(label=_(u"学号"),

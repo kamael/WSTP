@@ -149,9 +149,10 @@ def register(request):
         form = RegisterForm(request.POST.copy())
         if form.is_valid():
             username = form.cleaned_data["username"]
-            email = form.cleaned_data["email"]
+            tel = form.cleaned_data["tel"]
             password = form.cleaned_data["password"]
-            user = User.objects.create_user(username, email, password)
+            user = User.objects.create_user(username,'',password)
+            user.tel = request.POST['tel']
             user.grades = 0
             user.save()
             try:
@@ -205,11 +206,11 @@ def check_username(request):
     return HttpResponse("%s" % response_str)
 
 
-def check_email(request):
+def check_tel(request):
     response_str = "false"
     if request.method == 'GET':
         try:
-            user = User.objects.get(email=request.GET['email'])
+            user = User.objects.get(tel = request.GET['tel'])
             if user is not None:
                 response_str = "false"
         except:

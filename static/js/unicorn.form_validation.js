@@ -29,6 +29,11 @@ $(document).ready(function(){
 					}
 				}
 			},
+			tel:{
+				required:true,
+				number:true,
+				rangelength:[11,11]
+			},
 			username:{
 				required:true,
 				number:true,
@@ -69,6 +74,11 @@ $(document).ready(function(){
 			$(element).parents('.control-group').addClass('success');
 		},
 		messages: {
+			tel:{
+				required:"请输入手机号码",
+				number:"请输入有效手机号码",
+				rangelength:"请输入有效手机号码"
+			},
 			username:{
 				required:"请输入一卡通",
 				number:"一卡通为 9 位数字",

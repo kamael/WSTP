@@ -51,7 +51,7 @@
 							<table class="table table-bordered table-striped">
 	                        						<tbody>
 	                        							{% for i in userrank %}
-	                        							{% if i.username != 'iris' and i.grades != 0%}
+	                        							{% if i.username != 'iris' and i.grades > 0%}
 				                        				<tr>
 				                                        			<td>{% if i.first_name %}<strong>{{ i.first_name }} </strong>&nbsp;&nbsp;<small>{{ i.username }}</small> {% else %}<strong>  {{ i.username }}</strong> {% endif %}</td>
 				                                       			<td>{{ i.grades }} <small>Total Score</small></td>
@@ -69,19 +69,30 @@
            			{% endif %}
 
 			        
-                            
-			<div class="span11">
-				<h3>Welcome to Web Security Training Platform!</h3>
-				<p>Web Security Training Platform (WSTP) is a web application that is damn vulnerable. Its main goals are to be an aid for security professionals to test their skills and tools in a legal environment, help web developers better understand the processes of securing web applications and aid teachers/students to teach/learn web application security in a class room environment.</p>
+                                          <div class="span1">
+                                          </div>
+			<div class="span8">
+				<h1>Welcome to SUS2013!</h1>
+                                                        <br />
+                                                        <br />
+				<h4>竞赛时间:</h4>  
+                                                        <strong> 2013.5.10 - 2013.5.17</strong></p>
 				<br />
-				<h3>WARNING!</h3>
-				<p>Web Security Training Platform is damn vulnerable! Do not upload it to your hosting provider's public html folder or any internet facing web server as it will be compromised. We recommend downloading and installing XAMPP onto a local machine inside your LAN which is used solely for testing.</p>
+				<h4>参与方式:</h4>
+				<p>注册后即可做题。我们都欢迎你的到来！为了方便我们与你的联系，请务必填写您的联系方式。</p>
+                                                        <p>为了提高竞赛的乐趣，竞赛结束之前请不要公布题目答案，谢谢合作。</p>
+                                                        <p>请大家多多利用Google & Baidu.</p>
+                                                        <p>所有题目并没有一次性上线，请大家经常关注我们~祝大家玩的愉快，学的开心。</p>
 				<br />
-				<h3>Disclaimer</h3>
-				<p>We do not take responsibility for the way in which any one uses this application. We have made the purposes of the application clear and it should not be used maliciously. We have given warnings and taken measures to prevent users from installing WSTP on to live web servers. If your web server is compromised via an installation of WSTP it is not our responsibility it is the responsibility of the person/s who uploaded and installed it.</p>
+				<h4>竞赛规则:</h4>
+				<p>竞赛评奖采用积分制，按分数的多少进行排序。</p>
+                                                        <p>竞赛评分以选手攻关数目多少和系统记录的过关时间先后为依据，选手的最终成绩为通过各关所获分数的累积。
+                                                        <p>选手按分数多少排序，两名选手得分相同时，则根据各自通过最后一关的时间，先通过者优于后通过者。</p>
+                                                        <p>最后按照名次先后进行评奖，一等奖一名，二等奖三名，三等奖六名。</p>
+                                                        <p>竞赛旨在普及信息安全知识，引导初学者进行学习，并为技术爱好者们提供一个交流的平台。</p>
+                                                        <p>恶意攻击竞赛服务器的参赛者将失去比赛资格。</p>
 				<br />
-				<h3>General Instructions</h3>
-				<p>The help button allows you to view hits/tips for each vulnerability and for each security level on their respective page.</p>
+				<h5><a href="mailto:foreversus@gmail.com">Email Me</a> </h5>
 				<br />
 			</div>
 		</div> 
