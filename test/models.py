@@ -58,7 +58,7 @@ class Profile(object):
 
 class MyProfile(Profile):
     grades = models.IntegerField(null=True, blank=True)
-    answers = models.TextField()
-    questions = models.TextField()
+    answers = models.TextField(null=True)
+    questions = models.TextField(null=True)
     commit_time = models.DateTimeField(null=True, blank=True)
     tel = models.CharField(max_length=20)

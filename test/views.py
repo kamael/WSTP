@@ -64,7 +64,7 @@ def check_answer(request, offset):
     if request.user.is_authenticated():  # 判断用户是否已登录
         try:
             q = Content.objects.get(id=offset)
-            if q.answer == request.POST['password'] and offset not in User.objects.get(username=request.user).questions.split(';'):
+            if q.answer == request.POST['password'].strip() and offset not in User.objects.get(username=request.user).questions.split(';'):
                 add_grades(request.user, q)
         except:
             pass
